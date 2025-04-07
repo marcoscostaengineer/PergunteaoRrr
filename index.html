@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>PERGUNTE A Rrrrrrr!</title>
+  
+<!-- Favicon -->
+  <link rel="icon" type="image/png" href="rrr.png">
+
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Fredoka', sans-serif;
+      background: url('/background.png') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      padding: 40px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h1 {
+      font-size: 2.8rem;
+      color: #4B2E1D;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 0 #fff;
+    }
+
+    .form-control {
+      border-radius: 30px;
+      padding: 15px;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      border: 2px solid #8B5E3C;
+    }
+
+    .btn-pedra {
+      background: #7a5230;
+      border: 3px solid #5c3c22;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 50px;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      box-shadow: inset -2px -2px 0 #5c3c22;
+      transition: 0.3s;
+    }
+
+    .btn-pedra:hover {
+      background: #5c3c22;
+      box-shadow: inset 2px 2px 0 #3e2917;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 1.6rem;
+      color: #333;
+    }
+
+    /* Caveman container */
+    #caveman-container {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 25px;
+    }
+
+    #caveman-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .eye {
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      background: #fff;
+      border-radius: 50%;
+      border: 2px solid #333;
+      overflow: hidden;
+    }
+
+    .pupil {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #000;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Ajuste os olhos com base na imagem do rosto do Rrrrrrr */
+    #eye-left {
+      top: 85px;
+      left: 60px;
+    }
+
+    #eye-right {
+      top: 85px;
+      right: 80px;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #ffffff;
+    }
+
+    footer a {
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Cabeça do homem das cavernas com olhos móveis -->
+    <div id="caveman-container">
+      <img src="/rrr.png" alt="Rrrrrrr" id="caveman-img">
+      <div class="eye" id="eye-left"><div class="pupil"></div></div>
+      <div class="eye" id="eye-right"><div class="pupil"></div></div>
+    </div>
+
+    <h1>Pergunte ao Rrr!</h1>
+    <input type="text" id="option1" class="form-control" placeholder="Opção 1">
+    <input type="text" id="option2" class="form-control" placeholder="Opção 2">
+    <button onclick="chooseOption()" class="btn btn-pedra mt-2">Perguntar</button>
+    <div id="result"></div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>Feito com carinho por 
+      <a href="https://github.com/marcoscostaengineer" target="_blank">
+        Marcos Costa
+      </a>
+    </p>
+    <p>&copy; 2025 Marcos Costa. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function chooseOption() {
+      const o1 = document.getElementById('option1').value.trim();
+      const o2 = document.getElementById('option2').value.trim();
+
+      if (!o1 || !o2) {
+        alert('Digite duas opções para perguntar ao Rrrrrrr!');
+        return;
+      }
+
+      const chosen = Math.random() < 0.5 ? o1 : o2;
+      document.getElementById('result').textContent = 'Rrr diz: ' + chosen;
+    }
+
+    // Movimento dos olhos
+    document.addEventListener('mousemove', function(e) {
+      const eyes = document.querySelectorAll('.eye');
+      eyes.forEach(function(eye) {
+        const pupil = eye.querySelector('.pupil');
+        const rect = eye.getBoundingClientRect();
+        const dx = e.clientX - (rect.left + rect.width / 2);
+        const dy = e.clientY - (rect.top + rect.height / 2);
+        const angle = Math.atan2(dy, dx);
+        const offset = 10;
+        const x = Math.cos(angle) * offset;
+        const y = Math.sin(angle) * offset;
+        pupil.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
