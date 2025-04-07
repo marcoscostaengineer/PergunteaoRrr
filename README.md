@@ -1,4 +1,4 @@
-# 🪨 Pergunte a Rrrrrrr!
+# Pergunte a Rrrrrrr!
 
 Um site divertido inspirado no famoso "Pergunte ao Polvo", mas com um toque da Idade da Pedra!  
 Aqui, quem decide é **Rrrrrrr**, um simpático homem das cavernas com olhos que seguem seu mouse enquanto ele escolhe entre duas opções por você!
@@ -42,10 +42,6 @@ Aqui, quem decide é **Rrrrrrr**, um simpático homem das cavernas com olhos que
 ```
 
 > As imagens devem estar organizadas na pasta `img/` e referenciadas corretamente no código.
-
-## 📸 Preview
-
-![preview](img/screenshot.png)
 
 ## 📜 Licença
 
